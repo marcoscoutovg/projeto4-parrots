@@ -57,11 +57,21 @@ let cartaAnterior;
 
 let cartaAtual;
 
+let totalCartas = 0; //implemento da função final do jogo
+
+let quantosCliques = 0; //implemento da função final do jogo
+
 function verifica() {
    if (cartaAnterior.innerHTML === cartaAtual.innerHTML){
         contador = 0;
         cartaAnterior = undefined;
         cartaAtual = undefined;
+
+        //implemento da função final do jogo 72
+        totalCartas += 2;
+        if (totalCartas == perguntaNumCartas){
+            alert(`Você ganhou em ${quantosCliques} jogadas!`);
+        } //implemento da função final do jogo 76
    } else {
     cartaAnterior.querySelector('.frente').classList.add('virada');
     cartaAnterior.querySelector('.costas').classList.remove('virada');
@@ -86,6 +96,7 @@ function virarCarta(cartaSelecionada) {
         cartaAnterior = cartaSelecionada;
         frenteCarta.classList.remove('virada');
         costaCarta.classList.add('virada');
+        quantosCliques++; //implemento da função final do jogo 94
         
     } 
 
@@ -94,7 +105,7 @@ function virarCarta(cartaSelecionada) {
         frenteCarta.classList.remove('virada');
         costaCarta.classList.add('virada');
         setTimeout(verifica, 1000);
-
+        quantosCliques++; //implemento da função final do jogo 102
     }    
 
 }
