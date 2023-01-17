@@ -53,25 +53,24 @@ adicionaCartaDOM();
 
 let contador = 0; //qtde de cartas clicadas 
 
-let cartaAnterior;
+let cartaAnterior; //recebe a primeira carta do par
 
-let cartaAtual;
+let cartaAtual; //recebe a segunda carta do par
 
-let totalCartas = 0; //implemento da função final do jogo
+let totalCartas = 0; //total de cartas viradas
 
-let quantosCliques = 0; //implemento da função final do jogo
+let quantosCliques = 0; //quantidade de jogadas
 
 function verifica() {
    if (cartaAnterior.innerHTML === cartaAtual.innerHTML){
         contador = 0;
         cartaAnterior = undefined;
         cartaAtual = undefined;
-
-        //implemento da função final do jogo 72
         totalCartas += 2;
+        
         if (totalCartas == perguntaNumCartas){
             alert(`Você ganhou em ${quantosCliques} jogadas!`);
-        } //implemento da função final do jogo 76
+        }
    } else {
     cartaAnterior.querySelector('.frente').classList.add('virada');
     cartaAnterior.querySelector('.costas').classList.remove('virada');
@@ -96,8 +95,7 @@ function virarCarta(cartaSelecionada) {
         cartaAnterior = cartaSelecionada;
         frenteCarta.classList.remove('virada');
         costaCarta.classList.add('virada');
-        quantosCliques++; //implemento da função final do jogo 94
-        
+        quantosCliques++;
     } 
 
     if (cartaAnterior !== undefined && contador === 2) {
@@ -105,9 +103,8 @@ function virarCarta(cartaSelecionada) {
         frenteCarta.classList.remove('virada');
         costaCarta.classList.add('virada');
         setTimeout(verifica, 1000);
-        quantosCliques++; //implemento da função final do jogo 102
+        quantosCliques++;
     }    
-
 }
 
 function efeitoVirar(clique){
