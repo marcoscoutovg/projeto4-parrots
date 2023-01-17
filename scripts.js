@@ -20,7 +20,7 @@ function comparador() {
 } // função que embaralha as cartas
 
 const gif = ['bobross','bobross','explody','explody','fiesta','fiesta','metal','metal',
-'revertit','revertit','triplets','triplets','unicorn'];
+'revertit','revertit','triplets','triplets','unicorn','unicorn'];
 
 
 // vai adicionar cartas no DOM de forma dinâmica, de acordo com a qtde que o usuário escolheu
@@ -30,12 +30,12 @@ function adicionaCartaDOM() {
 
     for (let i = 0; numCartas.length < perguntaNumCartas; i++) {
         let carta = `     
-            <div class="carta">
-                <div class="frente-carta">
-                    <img src="./img/${gif[i]}parrot.gif" alt="gif"/>
+            <div data-test="card" onclick="virarCarta(this); efeitoVirar(this)" class="carta">
+                <div class="frente virada">
+                    <img data-test="face-up-image" src="./img/${gif[i]}parrot.gif" alt="gif"/>
                 </div>
-                <div class="costas-carta">
-                    <img src="./img/back.png" alt="img parrot"/>
+                <div class="costas">
+                    <img data-test="face-down-image" src="./img/back.png" alt="img parrot"/>
                 </div>
             </div>
         `
@@ -50,3 +50,57 @@ function adicionaCartaDOM() {
 }
 
 adicionaCartaDOM();
+
+let contador = 0; //qtde de cartas clicadas 
+
+let cartaAnterior;
+
+let cartaAtual;
+
+function verifica() {
+   if (cartaAnterior.innerHTML === cartaAtual.innerHTML){
+        contador = 0;
+        cartaAnterior = undefined;
+        cartaAtual = undefined;
+   } else {
+    cartaAnterior.querySelector('.frente').classList.add('virada');
+    cartaAnterior.querySelector('.costas').classList.remove('virada');
+    cartaAtual.querySelector('.frente').classList.add('virada');
+    cartaAtual.querySelector('.costas').classList.remove('virada');
+    contador = 0;
+    cartaAnterior = undefined;
+    cartaAtual = undefined;
+   }
+}
+
+function virarCarta(cartaSelecionada) {
+
+    const frenteCarta = cartaSelecionada.querySelector('.frente');
+    const costaCarta = cartaSelecionada.querySelector('.costas');
+
+    if (frenteCarta.classList.contains('virada')) {
+        contador++;
+    }
+
+    if (cartaAnterior === undefined) {
+        cartaAnterior = cartaSelecionada;
+        frenteCarta.classList.remove('virada');
+        costaCarta.classList.add('virada');
+        
+    } 
+
+    if (cartaAnterior !== undefined && contador === 2) {
+        cartaAtual = cartaSelecionada;
+        frenteCarta.classList.remove('virada');
+        costaCarta.classList.add('virada');
+        setTimeout(verifica, 1000);
+
+    }    
+
+}
+
+function efeitoVirar(clique){
+    clique.style.transition = "all .5s linear";
+    clique.style.transform = "rotateY(180deg)";
+    clique.querySelector('.costas').style.transform = "rotateY(180deg)";
+}

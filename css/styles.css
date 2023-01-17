@@ -11,6 +11,7 @@
     align-items: center;
 }
 
+
 .area-jogo{
     display: flex;
     width: 1100px;
@@ -20,7 +21,12 @@
 
 .carta {
     margin-right: 34px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    transition: all .5s linear;
 }
+
 
 h1 {
     width: 540px;
@@ -35,8 +41,8 @@ h1 {
     color: #75B79E;
 }
 
-.frente-carta,
-.costas-carta {
+.frente,
+.costas {
     width: 117px;
     height: 146px;
     display: flex;
@@ -48,7 +54,7 @@ h1 {
     margin-top: 45px;
 }
 
-.frente-carta {
+.virada {
     display: none;
 }
 
