@@ -89,19 +89,34 @@ img {
     }
 }
 
-@media (max-width: 541px) {
+@media (max-width: 440px) {
     .container,
     h1 {
         width: 100vw;
-        height: 100vh;
+        height: auto;
     }
 
     .area-jogo {
         display: flex;
-        flex-wrap: wrap;
+        flex-direction: column;
         margin-bottom: 47px;
     }
 
+    h1 {
+        width: 312px;
+        height: 63px;
+        font-size: 36px;
+        line-height: 42px;
+        text-align: center;
+        letter-spacing: -0.004em;
+    }
+
+    .carta {
+        margin-right: 0;
+    }
+}
+
+@media (max-width: 541px) {
     h1 {
         width: 312px;
         height: 63px;
